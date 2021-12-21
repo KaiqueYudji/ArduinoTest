@@ -1,5 +1,5 @@
 const SerialPort = require("serialport");
-const Readline = require("@serialoprt/parser-readline"); 
+const Readline = require("@serialport/parser-readline"); 
 
 
 const port = new SerialPort("COM3", {
@@ -7,6 +7,14 @@ const port = new SerialPort("COM3", {
 });
 
 const parser = new Readline();
-port.pipe(parser); 
+port.pipe(parser);
+
 
 parser.on("data", (line) => console.log(line));
+
+setTimeout(() =>{port.write("serial")}, 1500)
+
+
+
+
+
