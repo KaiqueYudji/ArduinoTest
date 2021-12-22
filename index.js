@@ -12,6 +12,7 @@ port.pipe(parser);
 
 parser.on("data", (line) => console.log(line));
 
+//Ctrl+c derruba o looping
 setTimeout(() =>{port.write("serial")}, 1500)
 
 
