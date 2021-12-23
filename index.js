@@ -1,8 +1,8 @@
-import { useState } from 'react'
 
 const SerialPort = require("serialport");
 const Readline = require("@serialport/parser-readline");
-const[validate,setValidate] = useState(false);
+
+let x = false;
 
 const port = new SerialPort("COM3", {
     baudRate: 9600,
@@ -14,9 +14,11 @@ const parser = new Readline("\n");
 
 function SerialPrint(arg) {
     port.write(arg);
-      setValidate(true);
 }
-console.log(x)
+
+function MudarValor(x){
+    return x = true;
+}
 
 ///Loop through
 port.pipe(parser);
@@ -29,7 +31,7 @@ let comands = ['Maria', 'Serial','Teste'];
 let i = 0;
 
 do{
-    setValidate(false);
+    x = false;
     console.log(comands[i]);
     
     setTimeout(SerialPrint, 4000, comands[i])
@@ -39,7 +41,7 @@ do{
      }
 
     i++;
-    
+  
 }while( x === true)
 
 
