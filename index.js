@@ -7,11 +7,11 @@ const port = new SerialPort("COM3", {
 
 const parser = new Readline("\n");
 
-
+x = false;
 
 function SerialPrint(arg) {
     port.write(arg);
-    
+    x = true;console.log(x)
 }
 
 ///Loop through
@@ -25,12 +25,16 @@ let comands = ['Maria', 'Serial','Teste'];
 let i = 0;
 
 do{
+    
     x = false;
     console.log(comands[i]);
 
-    if(setTimeout(SerialPrint, 4000, comands[i])){
-       
-    }
+    setTimeout(SerialPrint, 4000, comands[i])
+      
+     if(comands[i] ==='Teste'){
+      x = false;
+     }
+    
     
     
     i++;
