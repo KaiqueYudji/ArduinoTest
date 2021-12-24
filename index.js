@@ -1,22 +1,24 @@
-
+{
 const SerialPort = require("serialport");
 const Readline = require("@serialport/parser-readline");
 
 let x = true;
-let i =0;
+let i = 0;
+
+let response =[];
+
 
 const port = new SerialPort("COM3", {
     baudRate: 9600,
 });
 
-const parser = new Readline("\n");
 
+const parser = new Readline("\n");
 
 
 function SerialPrint(arg) {
     
     setTimeout(() => port.write(arg),1000);
-    
      MudarValor();
 }
 
@@ -32,47 +34,32 @@ function MudarValor(){
         while(x === true){
             
             x = false;
-
+            
             if( i === comands.length){
-                break
+                response.shift()
+                console.log(response)
+                port.close();
+                break;
             }
             
             setTimeout(SerialPrint, 2000, comands[i]);
             i++;
             
-            
-         console.log(comands.length)
-             
-        
         }
+ 
     
     }, 3000);
 
     
 }
 
-///Loop through
+
 port.pipe(parser);
-parser.on("data", (line) => console.log(line))
+parser.on("data", (line) => {console.log(line); let line1 = line.substr(0,line.indexOf("\r")); response.push(line1);})
 
 setTimeout(SerialPrint, 4000, 'Tes');
 
 
-/* 
-do{
-    x = false;
-    console.log(comands[i]);
-    
-    setTimeout(SerialPrint, 4000, comands[i]);
-     
-     if(comands[i] ==='Teste'){
-      x = false;
-     }
-
-    i++;
-    
-  
-}while( x === true) */
 
 
 
@@ -80,3 +67,4 @@ do{
 
 
 
+}
