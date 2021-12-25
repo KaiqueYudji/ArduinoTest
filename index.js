@@ -47,7 +47,6 @@ function MudarValor(){
             
         }
  
-    
     }, 3000);
 }
 
