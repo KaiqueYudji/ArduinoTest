@@ -37,7 +37,6 @@ function MudarValor(){
             
             if( i === comands.length){
                 response.shift()
-                console.log(response)
                 port.close();
                 break;
             }
