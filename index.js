@@ -8,7 +8,7 @@ let i = 0;
 let response =[];
 
 //alterei a porta com3 para com4
-const port = new SerialPort("COM4", {
+const port = new SerialPort("COM3", {
     baudRate: 9600,
 });
 
@@ -47,12 +47,12 @@ function MudarValor(){
             
         }
  
-    }, 3000);
+    }, 2500);
 }
 
 port.pipe(parser);
 parser.on("data", (line) => {console.log(line); let line1 = line.substr(0,line.indexOf("\r")); response.push(line1);})
 
-setTimeout(SerialPrint, 4000, 'Tes');
+setTimeout(SerialPrint, 2500, 'start');
 
 }
