@@ -36,7 +36,8 @@ function MudarValor(){
             x = false;
             
             if( i === comands.length){
-                response.shift()
+                response.shift();
+                console.log(response);
                 port.close();
                 break;
             }
@@ -52,6 +53,6 @@ function MudarValor(){
 port.pipe(parser);
 parser.on("data", (line) => {console.log(line); let line1 = line.substr(0,line.indexOf("\r")); response.push(line1);})
 
-setTimeout(SerialPrint, 2500, 'start');
 
+setTimeout(SerialPrint, 2500, 'start');
 }
